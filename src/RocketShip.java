@@ -1,8 +1,13 @@
 //10-1-20 hw
+import java.util.*;
 public class RocketShip {
 
-    public static final int SIZE = 3;
+    public static int SIZE;
     public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        System.out.print("Please enter the size of the rocket: ");
+        SIZE = input.nextInt();
 
         triangle();
         horizontalLine();
@@ -16,9 +21,9 @@ public class RocketShip {
     }
 
     public static void triangle(){
-        for(int line = 1; line <= SIZE+2; line++){
+        for(int line = 1; line <= 2*SIZE-1; line++){
             //spaces
-            for(int spaces = 1; spaces <= (-1*line)+6; spaces++){
+            for(int spaces = 1; spaces <= (-1*line)+(SIZE*2); spaces++){
                 System.out.print(" ");
             }
             //forward slashes
@@ -61,7 +66,7 @@ public class RocketShip {
             System.out.print("|");
             dots1(line);
             miniTriangle2(line);
-            for(int dot = 1; dot <= 2*line-(SIZE-1); dot++){
+            for(int dot = 1; dot <= 2*line-(SIZE*2)/SIZE; dot++){
                 System.out.print(".");
             }
             miniTriangle2(line);
@@ -83,7 +88,7 @@ public class RocketShip {
     }
 
     public static void dots1(int line){
-        for(int dot = 1; dot <= line-(SIZE-2); dot++){
+        for(int dot = 1; dot <= line-(SIZE/SIZE); dot++){
             System.out.print(".");
         }
     }

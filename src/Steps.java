@@ -1,8 +1,13 @@
 //10-1-20 hw
+import java.util.*;
 public class Steps {
 
-    public static final int SIZE = 5;
+    public static int SIZE;
     public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        System.out.print("Please enter the number of steps: ");
+        SIZE = input.nextInt();
 
         for(int block = 1; block <= SIZE; block++){
             man(block);

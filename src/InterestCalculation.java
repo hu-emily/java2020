@@ -1,4 +1,5 @@
-//10-19-20
+//10-19-20 and hw
+//class on 10-21-20
 /*
 Emily Hu
 what this program is about...
@@ -13,41 +14,44 @@ for the number years
 import java.util.*;
 public class InterestCalculation {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Please enter the amount of your initial investment: ");
-        double initialInvestment = input.nextDouble();
-        System.out.print("Please enter the amount of years you'd like to invest: ");
-        int years = input.nextInt();
-        System.out.print("Please enter the yearly interest rate in %: ");
-        double interestRate = input.nextDouble();
-        System.out.print("Please enter the amount of your yearly deposit: ");
-        double yearlyDespoit = input.nextDouble();
+        String answer;
+        do{
+            Scanner input = new Scanner(System.in);
+            System.out.print("Please enter the amount of your initial investment: ");
+            double initialInvestment = input.nextDouble();
+            System.out.print("Please enter the amount of years you'd like to invest: ");
+            int years = input.nextInt();
+            System.out.print("Please enter the yearly interest rate in %: ");
+            double interestRate = input.nextDouble();
+            System.out.print("Please enter the amount of your yearly deposit: ");
+            double yearlyDespoit = input.nextDouble();
 
-//        double finalBalance = calculateInterest(initialInvestment,years,interestRate,yearlyDespoit);
-//        System.out.printf("The final balance is %2f \n",finalBalance);
-
-        System.out.println("Year\tBalance\t\tInterest\tNew Deposit\t\tNew Balance");
-        System.out.println();
-
-        double amount = initialInvestment;
-        for(int i = 1; i <= years; i++){
-            System.out.print(i+"\t\t");
-            System.out.printf("%.2f",amount);
-            System.out.print("\t\t");
-
-            double amt = amount+calculateInterest(amount,interestRate);
-            double balance = calculateInterest(amount,interestRate);
-
-            System.out.printf("%.2f\t\t",balance);
-            System.out.print(yearlyDespoit+"\t\t");
-            System.out.print("\t");
-
-            double finalBalance = amt;
-            System.out.printf("%.2f\t",finalBalance);
+            System.out.println("Year\tBalance\t\tInterest\tNew Deposit\t\tNew Balance");
             System.out.println();
 
-            amount = finalBalance+yearlyDespoit;
+            double amount = initialInvestment;
+            for (int i = 1; i <= years; i++) {
+                System.out.print(i + "\t\t");
+                System.out.printf("%.2f", amount);
+                System.out.print("\t\t");
+
+                double amt = amount + calculateInterest(amount, interestRate);
+                double balance = calculateInterest(amount, interestRate);
+
+                System.out.printf("%.2f\t\t", balance);
+                System.out.print(yearlyDespoit + "\t\t");
+                System.out.print("\t");
+
+                System.out.printf("%.2f\t", amt);
+                System.out.println();
+
+                amount = amt + yearlyDespoit;
+            }
+            System.out.print("Would you like to calculate another amount? ");
+            answer = input.next(); //Yes,yes,Y,y
+            answer = answer.toLowerCase();
         }
+        while(answer.contains("y")); //or you can use answer.equals("yes")||answer.equals("y")
 
     }
 

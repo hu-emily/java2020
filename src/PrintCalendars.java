@@ -35,7 +35,7 @@ public class PrintCalendars {
         printCalendar(totalDays,firstSunday);
         dottedLine();
     }
-
+    //print d
     public static void dottedLine(){
         for(int i = 1; i <= 7; i++){
             System.out.print("+------");
@@ -51,29 +51,43 @@ public class PrintCalendars {
         } else {
             blank = 8 - firstSunday;
         }
-
-        for(int rows = 1; rows <= 5; rows++) {
-            for(int columns = 1; columns <= 7; columns++){
-                System.out.print("|");
-                //print dates
-                int day = (7*(rows-1))+columns;
-                if(day <= totalDays){
-                    System.out.print(padded(day,4));
-                    System.out.print("  ");
-                }
-
-                else{
-                    day = 0;
-                    String date = Integer.toString(day);
-                    date = " ";
-                    System.out.print(padded2(date,4));
-                    System.out.print("  ");
-                }
+        //print first row
+        for(int i = 1; i <= 7; i++){
+            System.out.print("|");
+            //blank spaces
+            if(i<=blank){
+                String space = " ";
+                System.out.print(padded(space,4));
+                System.out.print("  ");
             }
-            System.out.println("|");
+            //numbers before first Sunday
+            else{
+                int space = i - blank;
+                System.out.print(padded(space,4));
+                System.out.print("  ");
+            }
         }
+        System.out.println("|");
+        //print first Sunday to the end
+        for(int i = firstSunday; i <= totalDays; i++){
+            System.out.print("|");
+            System.out.print(padded(i,4));
+            System.out.print("  ");
+            if(i%7 == firstSunday-1){
+                System.out.println("|");
+            }
+        }
+        //print blank spaces on last row
+        for(int i = totalDays; i < totalDays+blank-1; i++){
+            System.out.print("|");
+            String space = " ";
+            System.out.print(padded(space,4));
+            System.out.print("  ");
+        }
+        System.out.println("|");
     }
 
+    //formatting
     public static String padded(int n,int width){
         String s = " " + n;
         for(int i = s.length(); i < width; i++){
@@ -82,7 +96,8 @@ public class PrintCalendars {
         return s;
     }
 
-    public static String padded2(String n,int width) {
+    //same formatting again but with String as parameter
+    public static String padded(String n,int width) {
         String s = " " + n;
         for (int i = s.length(); i < width; i++) {
             s = " " + s;

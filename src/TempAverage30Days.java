@@ -1,12 +1,11 @@
 //10-27-20 hw
-import sun.awt.windows.WPrinterJob;
 
 import java.util.Scanner;
 public class TempAverage30Days {
     public static void main(String[] args) {
         //create scanner and array
         Scanner input = new Scanner(System.in);
-        int days = 5;
+        int days = 30;
         int temp[] = new int[days];
 
         //getting inputs of temps and adding them onto variable 'sum'

@@ -23,11 +23,14 @@ method to input new temp
 
 import java.util.Scanner;
 public class TempAverage30Days {
-    public static int days = 5;
-    public static int temp[] = new int[days];
+    public static Scanner input = new Scanner(System.in);
+    public static int days;
+    public static int temp[] = new int[30];
     public static double average = 0;
 
     public static void main(String[] args) {
+        System.out.print("Please enter the amount of days you'd like to input: ");
+        days = input.nextInt();
         menu();
     }
     public static void menu(){
@@ -40,7 +43,6 @@ public class TempAverage30Days {
         System.out.println("*    5. input a new day                *");
         System.out.println("*    6. exit                           *");
         System.out.println("****************************************");
-        Scanner input = new Scanner(System.in);
         int answer = input.nextInt();
         switch(answer){
             case 1:
@@ -48,6 +50,10 @@ public class TempAverage30Days {
                 break;
             case 2:
                 calculateAverage();
+                System.out.print("The average temp is approximately ");
+                System.out.printf("%.2f",average);
+                System.out.println();
+                menu();
                 break;
             case 3:
                 aboveAverage();
@@ -67,7 +73,7 @@ public class TempAverage30Days {
     }
     public static void inputTemps(Scanner input){
         int sum = 0;
-        for(int i = 0; i < temp.length; i++){
+        for(int i = 0; i < days; i++){
             System.out.print("Day "+(i+1)+"'s high temp: ");
             temp[i] = input.nextInt();
         }
@@ -76,23 +82,15 @@ public class TempAverage30Days {
     }
     public static void calculateAverage(){
         int sum = 0;
-        for(int i = 0; i < temp.length; i++){
+        for(int i = 0; i < days; i++){
             sum += temp[i];
         }
-        double average = (double)sum/days;
-        System.out.print("The average temp is approximately ");
-        System.out.printf("%.2f",average);
-        System.out.println();
-        menu();
+        average = (double)sum/days;
     }
     public static void aboveAverage(){
-        int sum = 0;
-        for(int i = 0; i < temp.length; i++){
-            sum += temp[i];
-        }
-        double average = (double)sum/days;
+        calculateAverage();
         int count = 0;
-        for(int i = 0; i < temp.length; i++){
+        for(int i = 0; i < days; i++){
             if(temp[i] > average){
                 count++;
             }
@@ -101,13 +99,9 @@ public class TempAverage30Days {
         menu();
     }
     public static void belowAverage(){
-        int sum = 0;
-        for(int i = 0; i < temp.length; i++){
-            sum += temp[i];
-        }
-        double average = (double)sum/days;
+        calculateAverage();
         int count = 0;
-        for(int i = 0; i < temp.length; i++){
+        for(int i = 0; i < days; i++){
             if(temp[i] < average){
                 count++;
             }
